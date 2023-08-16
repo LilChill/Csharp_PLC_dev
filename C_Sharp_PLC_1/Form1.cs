@@ -42,22 +42,35 @@ namespace C_Sharp_PLC_1
         {
             adsClient = new TcAdsClient();
             adsClient.Connect("192.168.1.6.1.1", 851);
-            userLantern1.LanternBackground = Color.Green;
+            if (adsClient != null)
+            {
+                userLantern1.LanternBackground = Color.Green;
 
-            userCurve1.SetLeftCurve("A", new float[] { }, Color.Red);
-            userCurve2.SetLeftCurve("B", new float[] { }, Color.Blue);
+                userCurve1.SetLeftCurve("A", new float[] { }, Color.Red);
+                userCurve2.SetLeftCurve("B", new float[] { }, Color.Blue);
+            }
+            else {
+                MessageBox.Show("连接失败");
+            }
+            
         }
 
         private void Disconnect_Button_Click(object sender, EventArgs e)
         {
-            userLantern1.LanternBackground = Color.Red;
-            adsClient.Dispose();
+            if (adsClient != null)
+            {
+                userLantern1.LanternBackground = Color.Red;
+                adsClient.Dispose();
+            }
+            
         }
 
         private void DataScrub_Button_Click(object sender, EventArgs e)
         {
+
             userCurve1.SetLeftCurve("A", new float[] { }, Color.Red);
             userCurve2.SetLeftCurve("B", new float[] { }, Color.Blue);
+
             userCurve1.StrechDataCountMax = userCurve2.StrechDataCountMax = 300;
 
             userCurve1.IsAbscissaStrech = userCurve2.IsAbscissaStrech = false;
@@ -67,15 +80,23 @@ namespace C_Sharp_PLC_1
 
         private void Gather_Button_Click(object sender, EventArgs e)
         {
-            timer1.Interval = 10;
-            timer1.Start();
-            userLantern2.LanternBackground = Color.Blue;
-            Collect = true;
-            userCurve1.StrechDataCountMax = userCurve2.StrechDataCountMax = 300;
+            try
+            {
+                timer1.Interval = 10;
+                timer1.Start();
+                userLantern2.LanternBackground = Color.Blue;
+                Collect = true;
+                userCurve1.StrechDataCountMax = userCurve2.StrechDataCountMax = 300;
 
-            userCurve1.IsAbscissaStrech = userCurve2.IsAbscissaStrech = false;
+                userCurve1.IsAbscissaStrech = userCurve2.IsAbscissaStrech = false;
 
-            userCurve1.TextAddFormat = userCurve2.TextAddFormat = "HH:mm:ss";
+                userCurve1.TextAddFormat = userCurve2.TextAddFormat = "HH:mm:ss";
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+            
         }
         
         private void timer1_Elapsed(object sender, EventArgs e)
@@ -94,7 +115,8 @@ namespace C_Sharp_PLC_1
             List<DateTime> curTimeList = new List<DateTime>();
             DateTime currentTime;
             string[] customXAxisArray = new string[100];
-            string time;            
+            string time;
+            //userCurve1.IsAbscissaStrech = true;
             try
             {
                 for (int k = 0; k < 100; k++)
@@ -107,11 +129,11 @@ namespace C_Sharp_PLC_1
                     currentTime = DateTime.Now;
                     curTimeList.Add(currentTime);
                     time = currentTime.ToString("HH:mm:ss");
-                    customXAxisArray[k]=time;
+                    //customXAxisArray[k]=time;
                 }
 
                 userCurve1.AddCurveData("A", array1);
-                //userCurve1.SetCurveText( customXAxisArray);
+                
                 userCurve1.Invalidate();
                 userCurve2.AddCurveData("B", array2);
                 userCurve2.Invalidate();
@@ -142,6 +164,7 @@ namespace C_Sharp_PLC_1
             }
             catch (Exception ex)
             {
+                 
                 MessageBox.Show(ex.Message);
             }
         }
@@ -154,7 +177,8 @@ namespace C_Sharp_PLC_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            userCurve_replay1.SetLeftCurve("C", new float[] { }, Color.Red);
+            userCurve_replay2.SetLeftCurve("D", new float[] { }, Color.Blue);
         }
         private int Get_Length()
         {
@@ -172,6 +196,11 @@ namespace C_Sharp_PLC_1
             }
             return length;
         }
+        private string[] GetXAxisArray(int length) {
+            string[] customXAxisArray = new string[length];
+
+            return customXAxisArray;
+        }
         private string Parse_Time(string time) {
             //将"yyyy-MM-dd HH:mm:ss.fff"转换为"HH:mm:ss"
             string dtime;
@@ -183,31 +212,42 @@ namespace C_Sharp_PLC_1
             dtime = time.Substring(start, time.Length - start);
             return dtime;
         }
+
+        private int get_interval(int length, int slice) {
+            int leftright = 50;
+            float offect = (userCurve_replay1.Size.Width - leftright * 2) * 1.0f / (userCurve_replay1.StrechDataCountMax - 1);
+            if (offect > 40) return 1;
+            offect = 40f / offect;
+            return (int)Math.Ceiling(offect);
+        }
         private void Review_Button_Click(object sender, EventArgs e)
         {
             Collect = false;
             int length = Get_Length();
             userLantern2.LanternBackground = Color.Black;
-            userCurve1.SetLeftCurve("A", new float[] { }, Color.Red);
-            userCurve2.SetLeftCurve("B", new float[] { }, Color.Blue);
-            userCurve1.StrechDataCountMax = userCurve2.StrechDataCountMax = length;
+            userCurve_replay1.SetLeftCurve("C", new float[] { }, Color.Red);
+            userCurve_replay2.SetLeftCurve("D", new float[] { }, Color.Blue);
+            userCurve_replay1.StrechDataCountMax = userCurve_replay2.StrechDataCountMax = length;
 
-            userCurve1.IsAbscissaStrech = userCurve2.IsAbscissaStrech = true;
+            userCurve_replay1.IsAbscissaStrech = userCurve_replay2.IsAbscissaStrech = true;
 
-            //userCurve1.TextAddFormat = userCurve2.TextAddFormat = "HH:mm";
 
-            userCurve1.Invalidate();
-            userCurve2.Invalidate();
+            //userCurve_replay1.Invalidate();
+            //userCurve_replay2.Invalidate();
             //Form2 timeSelectionForm = new Form2();
             //timeSelectionForm.Show();
             float[] array1;
             float[] array2;
 
             string[] customXAxisArray = new string[length];
+            List<string> indexArray = new List<string>();
             string time;
             int k = 0;
+            int j = 0;
             string connectstring = "server = localhost; user = root; password = lichunrui ; database = array";
-
+            int slice = 15; 
+            int interval = get_interval(length,slice);
+            //textBox3.Text = (interval).ToString();
             using (MySqlConnection connection = new MySqlConnection(connectstring))
             {
                 connection.Open();
@@ -231,23 +271,39 @@ namespace C_Sharp_PLC_1
                             {                               
                                 array1[i] = (float)reader["signal1"];
                                 array2[i] = (float)reader["signal2"];
-                                customXAxisArray[k++] =Parse_Time(reader["timestamp"].ToString());
+                                if ((k % interval == 0 && (k / interval) % 2 == 0) || k == length - 1) { 
+                                    customXAxisArray[k] =Parse_Time(reader["timestamp"].ToString());
+                                    j++;
+                                }
+
+                                else customXAxisArray[k] = "";
+                                //customXAxisArray[k] = k.ToString();
+                                indexArray.Add(Parse_Time(reader["timestamp"].ToString()));
+                                k++;
                                 i++;
                             }
-                            userCurve1.AddCurveData("A", array1);
-                            userCurve2.AddCurveData("B", array2);
+                            userCurve_replay1.AddCurveData("C", array1);
+                            userCurve_replay2.AddCurveData("D", array2);
                             if (reader.Read() == false&&i<rowCount) break;
                             offset += rowCount;
                         }
                         
 
-                    }
-                    userCurve1.SetCurveText(customXAxisArray);
+                    }                                     
 
                 }
+                userCurve_replay2.SetCurveText(customXAxisArray);
+                userCurve_replay1.SetCurveText(customXAxisArray);
+                
+                userCurve_replay1.Invalidate();
+                userCurve_replay2.Invalidate();
             }
         }
 
+        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
         
     

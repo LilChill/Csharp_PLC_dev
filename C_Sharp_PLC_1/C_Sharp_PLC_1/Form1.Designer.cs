@@ -31,17 +31,18 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.segment_name = new System.Windows.Forms.Label();
-            this.well_name = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.btnCollapseReplay = new System.Windows.Forms.Button();
             this.label_isGathering = new System.Windows.Forms.Label();
             this.label_isConnect = new System.Windows.Forms.Label();
             this.Connect_Button = new HslControls.HslButton();
-            this.Export_Button = new HslControls.HslButton();
             this.Choose_Time_Button = new HslControls.HslButton();
             this.Replay_Button = new HslControls.HslButton();
+=======
+            this.Connect_Button = new HslControls.HslButton();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.Review_Button = new HslControls.HslButton();
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -50,6 +51,7 @@
             this.userLantern2 = new HslCommunication.Controls.UserLantern();
             this.userLantern1 = new HslCommunication.Controls.UserLantern();
             this.Gather_Button = new HslControls.HslButton();
+<<<<<<< HEAD
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.userCurve_replay2 = new HslCommunication.Controls.UserCurve();
@@ -57,6 +59,16 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.userCurve1 = new HslCommunication.Controls.UserCurve();
             this.userCurve2 = new HslCommunication.Controls.UserCurve();
+=======
+            this.Disconnect_Button = new HslControls.HslButton();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.userCurve_replay1 = new HslCommunication.Controls.UserCurve();
+            this.userCurve_replay2 = new HslCommunication.Controls.UserCurve();
+            this.userCurve1 = new HslCommunication.Controls.UserCurve();
+            this.userCurve2 = new HslCommunication.Controls.UserCurve();
+            this.Choose_Time_Button = new HslControls.HslButton();
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,7 +88,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.splitContainer1.BackColor = System.Drawing.Color.Snow;
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
@@ -86,18 +98,18 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.splitContainer1.Panel1.Controls.Add(this.segment_name);
-            this.splitContainer1.Panel1.Controls.Add(this.well_name);
-            this.splitContainer1.Panel1.Controls.Add(this.label4);
-            this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.btnCollapseReplay);
             this.splitContainer1.Panel1.Controls.Add(this.label_isGathering);
             this.splitContainer1.Panel1.Controls.Add(this.label_isConnect);
             this.splitContainer1.Panel1.Controls.Add(this.Connect_Button);
-            this.splitContainer1.Panel1.Controls.Add(this.Export_Button);
+<<<<<<< HEAD
             this.splitContainer1.Panel1.Controls.Add(this.Choose_Time_Button);
             this.splitContainer1.Panel1.Controls.Add(this.Replay_Button);
+=======
+            this.splitContainer1.Panel1.Controls.Add(this.textBox3);
+            this.splitContainer1.Panel1.Controls.Add(this.Choose_Time_Button);
+            this.splitContainer1.Panel1.Controls.Add(this.Review_Button);
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
@@ -112,61 +124,43 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1477, 853);
-            this.splitContainer1.SplitterDistance = 128;
+            this.splitContainer1.SplitterDistance = 106;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
-            // segment_name
-            // 
-            this.segment_name.AutoSize = true;
-            this.segment_name.BackColor = System.Drawing.Color.Transparent;
-            this.segment_name.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.segment_name.Location = new System.Drawing.Point(347, 93);
-            this.segment_name.Name = "segment_name";
-            this.segment_name.Size = new System.Drawing.Size(0, 17);
-            this.segment_name.TabIndex = 12;
-            // 
-            // well_name
-            // 
-            this.well_name.AutoSize = true;
-            this.well_name.BackColor = System.Drawing.Color.Transparent;
-            this.well_name.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.well_name.Location = new System.Drawing.Point(109, 94);
-            this.well_name.Name = "well_name";
-            this.well_name.Size = new System.Drawing.Size(0, 17);
-            this.well_name.TabIndex = 12;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(62, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 19);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "井号:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(300, 92);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 19);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "段号:";
-            // 
+<<<<<<< HEAD
             // btnCollapseReplay
             // 
             this.btnCollapseReplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCollapseReplay.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCollapseReplay.Location = new System.Drawing.Point(1426, 97);
+            this.btnCollapseReplay.Location = new System.Drawing.Point(1426, 75);
             this.btnCollapseReplay.Name = "btnCollapseReplay";
             this.btnCollapseReplay.Size = new System.Drawing.Size(44, 24);
             this.btnCollapseReplay.TabIndex = 5;
             this.btnCollapseReplay.Text = "展开";
             this.btnCollapseReplay.UseVisualStyleBackColor = true;
             this.btnCollapseReplay.Click += new System.EventHandler(this.btnCollapseReplay_Click);
+=======
+            // Connect_Button
+            // 
+            this.Connect_Button.CustomerInformation = null;
+            this.Connect_Button.Font = new System.Drawing.Font("Times New Roman", 12.10084F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Connect_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.Connect_Button.Location = new System.Drawing.Point(37, 239);
+            this.Connect_Button.Name = "Connect_Button";
+            this.Connect_Button.SelectColor = System.Drawing.Color.DarkRed;
+            this.Connect_Button.Size = new System.Drawing.Size(114, 46);
+            this.Connect_Button.TabIndex = 0;
+            this.Connect_Button.Text = "Connect";
+            this.Connect_Button.Click += new System.EventHandler(this.Connect_Button_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(23, 752);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(242, 29);
+            this.textBox3.TabIndex = 9;
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             // 
             // label_isGathering
             // 
@@ -193,7 +187,7 @@
             this.Connect_Button.CustomerInformation = null;
             this.Connect_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Connect_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.Connect_Button.Location = new System.Drawing.Point(570, 27);
+            this.Connect_Button.Location = new System.Drawing.Point(652, 27);
             this.Connect_Button.Name = "Connect_Button";
             this.Connect_Button.SelectColor = System.Drawing.Color.DarkRed;
             this.Connect_Button.Size = new System.Drawing.Size(114, 46);
@@ -201,26 +195,12 @@
             this.Connect_Button.Text = "连接";
             this.Connect_Button.Click += new System.EventHandler(this.Connect_Button_Click);
             // 
-            // Export_Button
-            // 
-            this.Export_Button.CustomerInformation = null;
-            this.Export_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Export_Button.ForeColor = System.Drawing.Color.Black;
-            this.Export_Button.Location = new System.Drawing.Point(1308, 27);
-            this.Export_Button.Name = "Export_Button";
-            this.Export_Button.SelectColor = System.Drawing.Color.Orange;
-            this.Export_Button.Size = new System.Drawing.Size(114, 46);
-            this.Export_Button.TabIndex = 8;
-            this.Export_Button.Text = "导出";
-            this.Export_Button.Visible = false;
-            this.Export_Button.Click += new System.EventHandler(this.Export_Button_Click);
-            // 
             // Choose_Time_Button
             // 
             this.Choose_Time_Button.CustomerInformation = null;
             this.Choose_Time_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Choose_Time_Button.ForeColor = System.Drawing.Color.Chocolate;
-            this.Choose_Time_Button.Location = new System.Drawing.Point(1163, 27);
+            this.Choose_Time_Button.Location = new System.Drawing.Point(1251, 27);
             this.Choose_Time_Button.Name = "Choose_Time_Button";
             this.Choose_Time_Button.SelectColor = System.Drawing.Color.Orange;
             this.Choose_Time_Button.Size = new System.Drawing.Size(114, 46);
@@ -232,10 +212,9 @@
             // Replay_Button
             // 
             this.Replay_Button.CustomerInformation = null;
-            this.Replay_Button.Enabled = false;
             this.Replay_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Replay_Button.ForeColor = System.Drawing.Color.OrangeRed;
-            this.Replay_Button.Location = new System.Drawing.Point(1019, 27);
+            this.Replay_Button.Location = new System.Drawing.Point(1101, 27);
             this.Replay_Button.Name = "Replay_Button";
             this.Replay_Button.SelectColor = System.Drawing.Color.Orange;
             this.Replay_Button.Size = new System.Drawing.Size(114, 46);
@@ -288,7 +267,7 @@
             this.DataScrub_Button.CustomerInformation = null;
             this.DataScrub_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataScrub_Button.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.DataScrub_Button.Location = new System.Drawing.Point(723, 27);
+            this.DataScrub_Button.Location = new System.Drawing.Point(805, 27);
             this.DataScrub_Button.Name = "DataScrub_Button";
             this.DataScrub_Button.Size = new System.Drawing.Size(114, 46);
             this.DataScrub_Button.TabIndex = 5;
@@ -321,13 +300,28 @@
             this.Gather_Button.Enabled = false;
             this.Gather_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Gather_Button.ForeColor = System.Drawing.Color.Blue;
-            this.Gather_Button.Location = new System.Drawing.Point(870, 27);
+            this.Gather_Button.Location = new System.Drawing.Point(952, 27);
             this.Gather_Button.Name = "Gather_Button";
             this.Gather_Button.Size = new System.Drawing.Size(114, 46);
             this.Gather_Button.TabIndex = 2;
             this.Gather_Button.Text = "开始传输";
             this.Gather_Button.Click += new System.EventHandler(this.Gather_Button_Click);
             // 
+<<<<<<< HEAD
+=======
+            // Disconnect_Button
+            // 
+            this.Disconnect_Button.CustomerInformation = null;
+            this.Disconnect_Button.Font = new System.Drawing.Font("Times New Roman", 12.10084F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Disconnect_Button.ForeColor = System.Drawing.Color.Red;
+            this.Disconnect_Button.Location = new System.Drawing.Point(37, 306);
+            this.Disconnect_Button.Name = "Disconnect_Button";
+            this.Disconnect_Button.Size = new System.Drawing.Size(114, 46);
+            this.Disconnect_Button.TabIndex = 1;
+            this.Disconnect_Button.Text = "Disconnect";
+            this.Disconnect_Button.Click += new System.EventHandler(this.Disconnect_Button_Click);
+            // 
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -342,9 +336,8 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer2.Size = new System.Drawing.Size(1473, 715);
+            this.splitContainer2.Size = new System.Drawing.Size(1473, 737);
             this.splitContainer2.SplitterDistance = 177;
             this.splitContainer2.SplitterWidth = 10;
             this.splitContainer2.TabIndex = 4;
@@ -354,25 +347,24 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.userCurve_replay2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.userCurve_replay2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.userCurve_replay1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 177F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1473, 177);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
+<<<<<<< HEAD
             // userCurve_replay2
             // 
             this.userCurve_replay2.BackColor = System.Drawing.Color.Transparent;
             this.userCurve_replay2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userCurve_replay2.Location = new System.Drawing.Point(741, 4);
-            this.userCurve_replay2.Margin = new System.Windows.Forms.Padding(5, 4, 4, 4);
+            this.userCurve_replay2.Location = new System.Drawing.Point(739, 3);
             this.userCurve_replay2.Name = "userCurve_replay2";
-            this.userCurve_replay2.Size = new System.Drawing.Size(728, 169);
+            this.userCurve_replay2.Size = new System.Drawing.Size(731, 171);
             this.userCurve_replay2.TabIndex = 3;
             this.userCurve_replay2.Title = "Replay Signal2";
             this.userCurve_replay2.ValueMaxLeft = 2F;
@@ -382,14 +374,22 @@
             this.userCurve_replay2.ValueSegment = 2;
             this.userCurve_replay2.Paint += new System.Windows.Forms.PaintEventHandler(this.userCurve_replay2_Paint);
             // 
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             // userCurve_replay1
             // 
             this.userCurve_replay1.BackColor = System.Drawing.Color.Transparent;
             this.userCurve_replay1.Dock = System.Windows.Forms.DockStyle.Fill;
+<<<<<<< HEAD
             this.userCurve_replay1.Location = new System.Drawing.Point(4, 4);
             this.userCurve_replay1.Margin = new System.Windows.Forms.Padding(4);
             this.userCurve_replay1.Name = "userCurve_replay1";
             this.userCurve_replay1.Size = new System.Drawing.Size(728, 169);
+=======
+            this.userCurve_replay1.Location = new System.Drawing.Point(3, 3);
+            this.userCurve_replay1.Name = "userCurve_replay1";
+            this.userCurve_replay1.Size = new System.Drawing.Size(736, 199);
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.userCurve_replay1.TabIndex = 2;
             this.userCurve_replay1.Title = "Replay Signal1";
             this.userCurve_replay1.ValueMaxLeft = 2F;
@@ -399,6 +399,7 @@
             this.userCurve_replay1.ValueSegment = 2;
             this.userCurve_replay1.Paint += new System.Windows.Forms.PaintEventHandler(this.userCurve_replay1_Paint);
             // 
+<<<<<<< HEAD
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
@@ -413,17 +414,40 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1473, 715);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1473, 737);
             this.tableLayoutPanel2.TabIndex = 2;
+=======
+            // userCurve_replay2
+            // 
+            this.userCurve_replay2.BackColor = System.Drawing.Color.Transparent;
+            this.userCurve_replay2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userCurve_replay2.Location = new System.Drawing.Point(745, 3);
+            this.userCurve_replay2.Name = "userCurve_replay2";
+            this.userCurve_replay2.Size = new System.Drawing.Size(736, 199);
+            this.userCurve_replay2.TabIndex = 3;
+            this.userCurve_replay2.Title = "Replay Signal2";
+            this.userCurve_replay2.ValueMaxLeft = 2F;
+            this.userCurve_replay2.ValueMaxRight = 2F;
+            this.userCurve_replay2.ValueMinLeft = -2F;
+            this.userCurve_replay2.ValueMinRight = -2F;
+            this.userCurve_replay2.ValueSegment = 2;
+            this.userCurve_replay2.Paint += new System.Windows.Forms.PaintEventHandler(this.userCurve_replay2_Paint);
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             // 
             // userCurve1
             // 
             this.userCurve1.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.userCurve1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userCurve1.Location = new System.Drawing.Point(4, 4);
             this.userCurve1.Margin = new System.Windows.Forms.Padding(4);
             this.userCurve1.Name = "userCurve1";
-            this.userCurve1.Size = new System.Drawing.Size(1465, 339);
+            this.userCurve1.Size = new System.Drawing.Size(1465, 350);
+=======
+            this.userCurve1.Location = new System.Drawing.Point(9, 24);
+            this.userCurve1.Name = "userCurve1";
+            this.userCurve1.Size = new System.Drawing.Size(1475, 303);
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.userCurve1.StrechDataCountMax = 100;
             this.userCurve1.TabIndex = 1;
             this.userCurve1.TextAddFormat = "HH:mm:ss";
@@ -432,16 +456,25 @@
             this.userCurve1.ValueMaxRight = 2F;
             this.userCurve1.ValueMinLeft = -2F;
             this.userCurve1.ValueMinRight = -2F;
+<<<<<<< HEAD
             this.userCurve1.ValueSegment = 10;
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             // 
             // userCurve2
             // 
             this.userCurve2.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.userCurve2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userCurve2.Location = new System.Drawing.Point(4, 351);
+            this.userCurve2.Location = new System.Drawing.Point(4, 362);
             this.userCurve2.Margin = new System.Windows.Forms.Padding(4);
             this.userCurve2.Name = "userCurve2";
-            this.userCurve2.Size = new System.Drawing.Size(1465, 339);
+            this.userCurve2.Size = new System.Drawing.Size(1465, 350);
+=======
+            this.userCurve2.Location = new System.Drawing.Point(11, 324);
+            this.userCurve2.Name = "userCurve2";
+            this.userCurve2.Size = new System.Drawing.Size(1475, 307);
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.userCurve2.TabIndex = 0;
             this.userCurve2.TextAddFormat = "HH:mm:ss";
             this.userCurve2.Title = "Signal2";
@@ -449,7 +482,25 @@
             this.userCurve2.ValueMaxRight = 2F;
             this.userCurve2.ValueMinLeft = -2F;
             this.userCurve2.ValueMinRight = -2F;
+<<<<<<< HEAD
             this.userCurve2.ValueSegment = 10;
+            this.userCurve2.Load += new System.EventHandler(this.userCurve2_Load);
+=======
+            // 
+            // Choose_Time_Button
+            // 
+            this.Choose_Time_Button.CustomerInformation = null;
+            this.Choose_Time_Button.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Choose_Time_Button.ForeColor = System.Drawing.Color.OrangeRed;
+            this.Choose_Time_Button.Location = new System.Drawing.Point(37, 681);
+            this.Choose_Time_Button.Name = "Choose_Time_Button";
+            this.Choose_Time_Button.SelectColor = System.Drawing.Color.Orange;
+            this.Choose_Time_Button.Size = new System.Drawing.Size(114, 46);
+            this.Choose_Time_Button.TabIndex = 8;
+            this.Choose_Time_Button.Text = "Choose";
+            this.Choose_Time_Button.Visible = false;
+            this.Choose_Time_Button.Click += new System.EventHandler(this.Choose_Time_Button_Click);
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             // 
             // Form1
             // 
@@ -482,6 +533,8 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private HslCommunication.Controls.UserCurve userCurve1;
+        private HslCommunication.Controls.UserCurve userCurve2;
         private HslControls.HslButton Gather_Button;
         private HslControls.HslButton Connect_Button;
         private HslCommunication.Controls.UserLantern userLantern1;
@@ -496,19 +549,15 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private HslControls.HslButton Choose_Time_Button;
+<<<<<<< HEAD
         public HslCommunication.Controls.UserCurve userCurve_replay1;
         public HslCommunication.Controls.UserCurve userCurve_replay2;
         private System.Windows.Forms.Label label_isGathering;
         private System.Windows.Forms.Label label_isConnect;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnCollapseReplay;
-        public HslCommunication.Controls.UserCurve userCurve1;
-        public HslCommunication.Controls.UserCurve userCurve2;
-        public HslControls.HslButton Export_Button;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.Label segment_name;
-        public System.Windows.Forms.Label well_name;
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
     }
 }
 

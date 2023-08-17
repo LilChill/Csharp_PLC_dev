@@ -12,8 +12,8 @@ namespace C_Sharp_PLC_1
 {
     public partial class Form2 : Form
     {
-        public static string[] AuxiliaryLines1;
-        public static string[] AuxiliaryLines2;
+        public static string[] AuxiliaryLines;
+        public static List<float> signalList;
         Form1 mainForm;
         public Form2(Form1 mForm)
         {
@@ -27,25 +27,34 @@ namespace C_Sharp_PLC_1
 
         private void hslButton1_Click(object sender, EventArgs e)
         {
-            string[] time1,time2;
-            if (dateTimeIntervelPicker1.DTime != null ) {
-                time1 = dateTimeIntervelPicker1.DTime.Split('-');
-                AuxiliaryLines1 = new string[2];
-                AuxiliaryLines1[0] = time1[0];
-                AuxiliaryLines1[1] = time1[1];
+            string[] time;
+            if (dateTimeIntervelPicker.DTime != null ) {
+                time = dateTimeIntervelPicker.DTime.Split('-');
+                AuxiliaryLines = new string[2];
+                AuxiliaryLines[0] = time[0];
+                AuxiliaryLines[1] = time[1];
+                mainForm.AuxiliaryLinesTime = AuxiliaryLines;
+                int startReplayIndex, endReplayIndex;
+                startReplayIndex = mainForm.getTimeIndex(AuxiliaryLines[0]);
+                endReplayIndex = mainForm.getTimeIndex(AuxiliaryLines[1]);
+                mainForm.Draw_replay_curve(startReplayIndex, endReplayIndex, Color.Red, endReplayIndex - startReplayIndex + 1);
+                mainForm.userCurve_replay1.Invalidate();
+                mainForm.userCurve1.Invalidate();
+                mainForm.userCurve_replay2.Invalidate();
+                mainForm.userCurve2.Invalidate();
+                mainForm.Export_Button.Visible = true;
+
+               
+
             }
-            else AuxiliaryLines1= null;
-            if (dateTimeIntervelPicker2.DTime != null)
-            {
-                time2 = dateTimeIntervelPicker2.DTime.Split('-');
-                AuxiliaryLines2 = new string[2];
-                AuxiliaryLines2[0] = time2[0];
-                AuxiliaryLines2[1] = time2[1];
-            }
-            else AuxiliaryLines2 = null;
+            else AuxiliaryLines= null;
             this.Hide();
-            mainForm.userCurve_replay1.Invalidate();
-            mainForm.userCurve_replay2.Invalidate();
+            mainForm.isReplaying = true;
+            
+            
+            
+            
+            
         }
 
 

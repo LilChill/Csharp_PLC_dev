@@ -12,12 +12,12 @@ namespace DateTimeIntervelControl
 {
     public partial class DateTimeIntervelPopup : UserControl
     {
-        //public string[] defaultStartTime, defaultEndTime;
-        DateTimeIntervelPicker dateTimePicker;
-        public DateTimeIntervelPopup(DateTimeIntervelPicker picker)
+        public string[] defaultStartTime, defaultEndTime;
+        public DateTimeIntervelPopup()
         {
             InitializeComponent();
-            dateTimePicker = picker;
+            timeStart.MyTime = defaultStartTime;
+            timeEnd.MyTime = defaultEndTime;
         }
 
         public delegate void BtnClickHandle(object sender, EventArgs e, DateTime start, DateTime end, string startMilisec, string endMiliSec);
@@ -40,14 +40,7 @@ namespace DateTimeIntervelControl
             if (SureClick != null)
             {
                 SureClick(sender, e, start, end, startMilSec, endMilSec);  //把日期时间传给DateTimeIntervelPicker
-                dateTimePicker.DefaultStartTime = new string[] {
-                    calendarStart.SelectionStart.ToString().Substring(0,10),timeStart.MyTime[0],timeStart.MyTime[1]
-                };
-                dateTimePicker.DefaultEndTime = new string[] {
-                    calendarEnd.SelectionStart.ToString().Substring(0,10),timeEnd.MyTime[0],timeEnd.MyTime[1]
-            };
                 
-
             }
 
         }

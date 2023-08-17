@@ -31,10 +31,7 @@ namespace C_Sharp_PLC_1
         private void InitializeComponent()
         {
             this.hslButton1 = new HslControls.HslButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimeIntervelPicker2 = new DateTimeIntervelControl.DateTimeIntervelPicker();
-            this.dateTimeIntervelPicker1 = new DateTimeIntervelControl.DateTimeIntervelPicker();
+            this.dateTimeIntervelPicker = new DateTimeIntervelControl.DateTimeIntervelPicker();
             this.SuspendLayout();
             // 
             // hslButton1
@@ -43,7 +40,7 @@ namespace C_Sharp_PLC_1
             this.hslButton1.CustomerInformation = null;
             this.hslButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslButton1.ForeColor = System.Drawing.Color.Black;
-            this.hslButton1.Location = new System.Drawing.Point(164, 173);
+            this.hslButton1.Location = new System.Drawing.Point(156, 79);
             this.hslButton1.Name = "hslButton1";
             this.hslButton1.OriginalColor = System.Drawing.Color.AliceBlue;
             this.hslButton1.Size = new System.Drawing.Size(110, 38);
@@ -51,69 +48,35 @@ namespace C_Sharp_PLC_1
             this.hslButton1.Text = "确认";
             this.hslButton1.Click += new System.EventHandler(this.hslButton1_Click);
             // 
-            // label1
+            // dateTimeIntervelPicker
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(24, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 22);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "signal1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(24, 111);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 22);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "signal2";
-            // 
-            // dateTimeIntervelPicker2
-            // 
-            this.dateTimeIntervelPicker2.BackColor = System.Drawing.Color.White;
-            this.dateTimeIntervelPicker2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dateTimeIntervelPicker2.Location = new System.Drawing.Point(107, 111);
-            this.dateTimeIntervelPicker2.Name = "dateTimeIntervelPicker2";
-            this.dateTimeIntervelPicker2.Size = new System.Drawing.Size(304, 26);
-            this.dateTimeIntervelPicker2.TabIndex = 5;
-            // 
-            // dateTimeIntervelPicker1
-            // 
-            this.dateTimeIntervelPicker1.BackColor = System.Drawing.Color.White;
-            this.dateTimeIntervelPicker1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dateTimeIntervelPicker1.Location = new System.Drawing.Point(107, 52);
-            this.dateTimeIntervelPicker1.Name = "dateTimeIntervelPicker1";
-            this.dateTimeIntervelPicker1.Size = new System.Drawing.Size(304, 26);
-            this.dateTimeIntervelPicker1.TabIndex = 5;
+            this.dateTimeIntervelPicker.BackColor = System.Drawing.Color.White;
+            this.dateTimeIntervelPicker.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dateTimeIntervelPicker.DefaultEndTime = null;
+            this.dateTimeIntervelPicker.DefaultStartTime = null;
+            this.dateTimeIntervelPicker.Location = new System.Drawing.Point(64, 27);
+            this.dateTimeIntervelPicker.Name = "dateTimeIntervelPicker";
+            this.dateTimeIntervelPicker.Size = new System.Drawing.Size(308, 27);
+            this.dateTimeIntervelPicker.TabIndex = 5;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(421, 242);
-            this.Controls.Add(this.dateTimeIntervelPicker2);
-            this.Controls.Add(this.dateTimeIntervelPicker1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(430, 138);
+            this.Controls.Add(this.dateTimeIntervelPicker);
             this.Controls.Add(this.hslButton1);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "回放时间段选择";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private HslControls.HslButton hslButton1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        public DateTimeIntervelControl.DateTimeIntervelPicker dateTimeIntervelPicker1;
-        public DateTimeIntervelControl.DateTimeIntervelPicker dateTimeIntervelPicker2;
+        public DateTimeIntervelControl.DateTimeIntervelPicker dateTimeIntervelPicker;
     }
 }

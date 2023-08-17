@@ -15,7 +15,7 @@ namespace DateTimeIntervelControl
         public DateTimeIntervelPicker()
         {
             InitializeComponent();
-            content = new DateTimeIntervelPopup(this);
+            content = new DateTimeIntervelPopup();
             popup = new Popup(content);
             popup.Dock = DockStyle.Bottom;
             //添加DateTimeIntervelPopup点击按钮事件
@@ -28,12 +28,9 @@ namespace DateTimeIntervelControl
         string[] defaultEndTime;
         private void btnPopup_Click(object sender, EventArgs e)
         {
-            content.timeStart.MyTime = new string[] { defaultStartTime[1], defaultStartTime[2] };
-            content.timeEnd.MyTime = new string[] { defaultEndTime[1], defaultEndTime[2] };
-            content.calendarStart.SelectionStart = Convert.ToDateTime(string.Join("-", defaultStartTime[0].Split('/')));
-            content.calendarEnd.SelectionStart = Convert.ToDateTime(string.Join("-", defaultEndTime[0].Split('/')));
             popup.Show(labelDisplay);
-            
+            content.timeStart.MyTime = defaultStartTime;
+            content.timeEnd.MyTime = defaultEndTime;
         }
 
         private void content_SureClick(object sender, EventArgs e, DateTime start, DateTime end,string startMilisec,string endMiliSec)
@@ -62,7 +59,6 @@ namespace DateTimeIntervelControl
             labelDisplay.ForeColor = Color.Black;
             dTime = sb.ToString();
             popup.Hide();
-
         }
 
         private DateTime startTime;
@@ -92,9 +88,6 @@ namespace DateTimeIntervelControl
         }
         public string[] DefaultStartTime
         {
-            get {
-                return defaultStartTime;
-            }
             set {
                 defaultStartTime = value;
             }
@@ -103,10 +96,6 @@ namespace DateTimeIntervelControl
 
         public string[] DefaultEndTime
         {
-            get
-            {
-                return defaultEndTime;
-            }
             set
             {
                 defaultEndTime = value;

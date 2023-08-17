@@ -51,19 +51,13 @@ namespace DateTimeIntervelControl
             // calendarStart
             // 
             this.calendarStart.Location = new System.Drawing.Point(21, 31);
-            this.calendarStart.MaxSelectionCount = 1;
             this.calendarStart.Name = "calendarStart";
-            this.calendarStart.ShowToday = false;
-            this.calendarStart.ShowTodayCircle = false;
             this.calendarStart.TabIndex = 1;
-            this.calendarStart.TodayDate = new System.DateTime(2023, 8, 22, 0, 0, 0, 0);
             // 
             // calendarEnd
             // 
             this.calendarEnd.Location = new System.Drawing.Point(295, 31);
             this.calendarEnd.Name = "calendarEnd";
-            this.calendarEnd.ShowToday = false;
-            this.calendarEnd.ShowTodayCircle = false;
             this.calendarEnd.TabIndex = 1;
             // 
             // label1
@@ -125,11 +119,11 @@ namespace DateTimeIntervelControl
         #endregion
 
         private System.Windows.Forms.Button btnSure;
+        private System.Windows.Forms.MonthCalendar calendarStart;
+        private System.Windows.Forms.MonthCalendar calendarEnd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         public TimeSetting timeStart;
         public TimeSetting timeEnd;
-        public System.Windows.Forms.MonthCalendar calendarStart;
-        public System.Windows.Forms.MonthCalendar calendarEnd;
     }
 }

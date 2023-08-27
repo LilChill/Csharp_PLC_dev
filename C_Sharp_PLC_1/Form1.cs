@@ -204,7 +204,7 @@ namespace C_Sharp_PLC_1
                 //endIndex = Get_Length();
                 Set_gather_component_mode(false);
                               
-                Replay(2);
+                Replay(1);
 
             }
 
@@ -308,7 +308,9 @@ namespace C_Sharp_PLC_1
                 using (MySqlCommand command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = $"SELECT COUNT(*) FROM (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%{selectInterval}=1 ";
+                    if(selectInterval<=1) command.CommandText = $"SELECT COUNT(*) FROM (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%{selectInterval}=0 ";
+
+                    else command.CommandText = $"SELECT COUNT(*) FROM (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%{selectInterval}=1 ";
                     command.Parameters.AddWithValue("@startIndex", startIndex);
                     command.Parameters.AddWithValue("@length", currentLength);
                     sampleLength = Convert.ToInt32(command.ExecuteScalar());
@@ -346,7 +348,17 @@ namespace C_Sharp_PLC_1
                         while (true)
                         {
                             command.Connection = connection;
-                            command.CommandText = $"select row_number() over(ORDER BY signal_id) as rownum,c.*  from (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%{selectInterval}=1 LIMIT @offset,@rowCount ";
+                            if (selectInterval <= 1)
+                            {
+                                command.CommandText = $"select row_number() over(ORDER BY signal_id) as rownum,c.*  from (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%{selectInterval}=0 LIMIT @offset,@rowCount ";
+
+                            }
+
+                            else {
+                                command.CommandText = $"select row_number() over(ORDER BY signal_id) as rownum,c.*  from (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%{selectInterval}=1 LIMIT @offset,@rowCount ";
+
+                            }
+
                             //command.CommandText = $"SELECT * FROM {currentTableName} LIMIT @offset,@rowCount";
                             command.Parameters.Clear();
                             command.Parameters.AddWithValue("@startIndex", startIndex);

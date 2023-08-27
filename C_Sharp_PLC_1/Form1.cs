@@ -565,7 +565,7 @@ namespace C_Sharp_PLC_1
             // Console.WriteLine(userCurve_replay1.Width);
             //currentTableName = "well1_segment1_signals";
             Set_gather_component_mode(false);
-            int selectInterval = 1000;//间隔多少条取数据
+            int selectInterval = 200;//间隔多少条取数据
             Replay(selectInterval);
         }
         private void Replay(int selectInterval) {

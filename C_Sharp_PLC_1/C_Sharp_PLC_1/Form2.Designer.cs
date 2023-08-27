@@ -42,6 +42,9 @@ namespace C_Sharp_PLC_1
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
+=======
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.SuspendLayout();
             // 
@@ -52,7 +55,11 @@ namespace C_Sharp_PLC_1
             this.hslButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslButton1.ForeColor = System.Drawing.Color.Black;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.hslButton1.Location = new System.Drawing.Point(164, 173);
+=======
+            this.hslButton1.Location = new System.Drawing.Point(101, 168);
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
 =======
             this.hslButton1.Location = new System.Drawing.Point(101, 168);
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
@@ -73,7 +80,10 @@ namespace C_Sharp_PLC_1
             this.label1.TabIndex = 1;
             this.label1.Text = "signal1";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             // 
             // textBox1
             // 
@@ -96,6 +106,7 @@ namespace C_Sharp_PLC_1
             // dateTimeIntervelPicker2
             // 
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.dateTimeIntervelPicker2.BackColor = System.Drawing.Color.White;
             this.dateTimeIntervelPicker2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dateTimeIntervelPicker2.Location = new System.Drawing.Point(107, 111);
@@ -112,11 +123,45 @@ namespace C_Sharp_PLC_1
             this.dateTimeIntervelPicker1.Size = new System.Drawing.Size(304, 26);
             this.dateTimeIntervelPicker1.TabIndex = 5;
 =======
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.textBox2.Location = new System.Drawing.Point(221, 56);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(80, 21);
             this.textBox2.TabIndex = 2;
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(112, 112);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(80, 21);
+            this.textBox3.TabIndex = 2;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(221, 112);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(80, 21);
+            this.textBox4.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(198, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(17, 12);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "—";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(198, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 12);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "—";
             // 
             // textBox3
             // 
@@ -156,16 +201,22 @@ namespace C_Sharp_PLC_1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(421, 242);
             this.Controls.Add(this.dateTimeIntervelPicker2);
             this.Controls.Add(this.dateTimeIntervelPicker1);
 =======
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.ClientSize = new System.Drawing.Size(340, 254);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox3);
+<<<<<<< HEAD
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
+=======
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -192,6 +243,9 @@ namespace C_Sharp_PLC_1
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+<<<<<<< HEAD
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
+=======
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
     }
 }

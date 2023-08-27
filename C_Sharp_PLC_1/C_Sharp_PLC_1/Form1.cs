@@ -14,7 +14,10 @@ using System.IO;
 using MySql.Data.MySqlClient;
 using HslCommunication.Controls;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using System.Threading;
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
 =======
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
 
@@ -39,6 +42,7 @@ namespace C_Sharp_PLC_1
         private TcAdsClient adsClient;
         private bool Collect = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
         public string[] AuxiliaryLinesTime1;
         public string[] AuxiliaryLinesTime2;
         private Form2 form2;//时间段选择窗体实例
@@ -56,6 +60,14 @@ namespace C_Sharp_PLC_1
             testForm test = new testForm();
 
             //test.Show();
+=======
+        public string[] AuxiliaryLines1;
+        public string[] AuxiliaryLines2;
+        private Form2 form2;//时间段选择窗体实例
+        public Form1()
+        {
+            form2 = new Form2();
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
 =======
         public string[] AuxiliaryLines1;
         public string[] AuxiliaryLines2;
@@ -166,8 +178,11 @@ namespace C_Sharp_PLC_1
             List<DateTime> curTimeList = new List<DateTime>();
             string time;
 <<<<<<< HEAD
+<<<<<<< HEAD
             int milliseconds = currentTime.Millisecond;
 =======
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             DateTime startTime = DateTime.Now;
             //userCurve1.IsAbscissaStrech = true;
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
@@ -205,7 +220,13 @@ namespace C_Sharp_PLC_1
                         for (int i = 0; i < rowCount; i++)
                         {
 <<<<<<< HEAD
+<<<<<<< HEAD
                             currentTime = currentTime.AddMilliseconds(1);
+=======
+                            //currentTime = curTimeList[i];
+                            //time = currentTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                            currentTime = startTime.AddMilliseconds(i);
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
 =======
                             //currentTime = curTimeList[i];
                             //time = currentTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
@@ -285,8 +306,11 @@ namespace C_Sharp_PLC_1
             return (int)Math.Ceiling(offect);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         private void addVerticalAuxiliaryLines(UserCurve userControl, int index)
 =======
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
         private void addVerticalAuxiliaryLines(UserCurve userControl,int index) {
             int leftRight = 50;
             int upDown = 25;
@@ -433,8 +457,11 @@ namespace C_Sharp_PLC_1
 
             userCurve_replay1.IsAbscissaStrech = userCurve_replay2.IsAbscissaStrech = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
             //AuxiliaryLines1 = new int[2];
             //AuxiliaryLines2 = new int[2];
 
@@ -488,6 +515,9 @@ namespace C_Sharp_PLC_1
                                 if ((k % interval == 0 && (k / interval) % 2 == 0) || k == length - 1) { 
                                     customXAxisArray[k] =Parse_Time(reader["timestamp"].ToString());
                                     addVerticalAuxiliaryLines(userCurve_replay1,k);
+<<<<<<< HEAD
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
+=======
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
                                     j++;
 
@@ -606,6 +636,9 @@ namespace C_Sharp_PLC_1
         {
             form2.Show();
         }
+<<<<<<< HEAD
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
+=======
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
     }
 }

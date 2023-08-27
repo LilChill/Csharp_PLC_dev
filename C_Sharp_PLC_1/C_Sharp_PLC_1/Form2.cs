@@ -24,6 +24,7 @@ namespace C_Sharp_PLC_1
             
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
         private void hslButton1_Click(object sender, EventArgs e)
@@ -51,6 +52,8 @@ namespace C_Sharp_PLC_1
 
 
 =======
+=======
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
         public static string[] AuxiliaryLines1;
         public static string[] AuxiliaryLines2;
 
@@ -70,6 +73,9 @@ namespace C_Sharp_PLC_1
             }
             this.Close();
         }
+<<<<<<< HEAD
+>>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
+=======
 >>>>>>> 7b443d29056d50e59990e246d4784835222d1ddc
     }
 }

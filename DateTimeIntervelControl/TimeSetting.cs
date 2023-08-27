@@ -16,21 +16,20 @@ namespace DateTimeIntervelControl
         {
             InitializeComponent();
         }
-        public String[] MyTime
+        public String MyTime
         {
             get
             {
-                string[] mytime = new string[2];
-                mytime[0] = numHour.Text + ":" + numMin.Text + ":" + numSecond.Text;
-                mytime[1] = numMilSec.Text;
+                string mytime = numHour.Text + ":" + numMin.Text + ":" + numSecond.Text;
+                //mytime[1] = numMilSec.Text;
                 return mytime;
             }
             set {
                 if (value != null) {
-                    string[] time = value[0].Split(':');
-                    string millisecond = value[1];
+                    string[] time = value.Split(':');
+                    //string millisecond = value[1];
                     numHour.Text = time[0]; numMin.Text = time[1]; numSecond.Text = time[2];
-                    numMilSec.Text = millisecond;
+                    //numMilSec.Text = millisecond;
                 }
                 
 

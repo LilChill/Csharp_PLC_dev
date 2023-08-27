@@ -34,8 +34,11 @@ namespace C_Sharp_PLC_1
             comboBox_wells.DropDownStyle = comboBox_segments.DropDownStyle = ComboBoxStyle.DropDown;
 
             getAllWellName();
-            comboBox_wells.SelectedIndex = defaultWell;
-            comboBox_segments.SelectedIndex = defaultSegment;
+            if (wells_dataTable != null) {
+                comboBox_wells.SelectedIndex = defaultWell;
+                comboBox_segments.SelectedIndex = defaultSegment;
+            }
+
             
             
             
@@ -96,15 +99,16 @@ namespace C_Sharp_PLC_1
             addWellMode = addSegmentMode = false;
             defaultWell = comboBox_wells.SelectedIndex;
             defaultSegment = comboBox_segments.SelectedIndex;
+
             mainForm.currentTableName = $"well{current_well}_segment{current_segment}_signals";
+            mainForm.currentExportFileName = $"{newWellName}_{newSegmentName}_signals";
             mainForm.CreateTableIfNotExists(mainForm.currentTableName);
-            //Console.WriteLine(defaultWell);
             mainForm.startIndex = mainForm.Get_Length();
-            //mainForm.startIndex =0;
             mainForm.well_name.Text = newWellName;
             mainForm.segment_name.Text = newSegmentName;
             mainForm.currentTime = currentTime;
-            mainForm.gather();
+            mainForm.Gather();
+
             this.Close();
 
         }
@@ -188,9 +192,12 @@ namespace C_Sharp_PLC_1
 
         private void comboBox_wells_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataRowView drv = (DataRowView)comboBox_wells.SelectedItem;
-            int select_well_id = Convert.ToInt32(drv.Row["id"].ToString());
-            getAllSegmentsName(select_well_id);
+            if (wells_dataTable != null) {
+                DataRowView drv = (DataRowView)comboBox_wells.SelectedItem;
+                int select_well_id = Convert.ToInt32(drv.Row["id"].ToString());
+                getAllSegmentsName(select_well_id);
+            }
+
         }
 
         private void button_addWell_Click(object sender, EventArgs e)
@@ -210,19 +217,25 @@ namespace C_Sharp_PLC_1
 
             string newWellName = comboBox_wells.Text;
             int index = 0;
-            foreach (DataRowView item in comboBox_wells.Items)
+            if (comboBox_wells.Items != null) 
             {
-                if (newWellName == item.Row["name"].ToString()) {
-                    int select_well_id = Convert.ToInt32(item.Row["id"].ToString());
-                    comboBox_wells.SelectedIndex = index;
-                    getAllSegmentsName(select_well_id);
-                    addWellMode = false;
-                    return;
+                foreach (DataRowView item in comboBox_wells.Items)
+                {
+                    if (newWellName == item.Row["name"].ToString())
+                    {
+                        int select_well_id = Convert.ToInt32(item.Row["id"].ToString());
+                        comboBox_wells.SelectedIndex = index;
+                        getAllSegmentsName(select_well_id);
+                        addWellMode = false;
+                        return;
+                    }
+                    index++;
                 }
-                index++;
+                
             }
             comboBox_segments.DataSource = null;
             addWellMode = true;
+
 
         }
 

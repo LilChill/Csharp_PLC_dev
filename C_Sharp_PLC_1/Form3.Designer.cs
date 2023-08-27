@@ -59,10 +59,6 @@ namespace C_Sharp_PLC_1
             // 
             this.comboBox_wells.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_wells.FormattingEnabled = true;
-            this.comboBox_wells.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
             this.comboBox_wells.Location = new System.Drawing.Point(67, 33);
             this.comboBox_wells.Name = "comboBox_wells";
             this.comboBox_wells.Size = new System.Drawing.Size(133, 20);

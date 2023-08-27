@@ -28,15 +28,15 @@ namespace DateTimeIntervelControl
         string[] defaultEndTime;
         private void btnPopup_Click(object sender, EventArgs e)
         {
-            content.timeStart.MyTime = new string[] { defaultStartTime[1], defaultStartTime[2] };
-            content.timeEnd.MyTime = new string[] { defaultEndTime[1], defaultEndTime[2] };
+            content.timeStart.MyTime = defaultStartTime[1];
+            content.timeEnd.MyTime = defaultEndTime[1];
             content.calendarStart.SelectionStart = Convert.ToDateTime(string.Join("-", defaultStartTime[0].Split('/')));
             content.calendarEnd.SelectionStart = Convert.ToDateTime(string.Join("-", defaultEndTime[0].Split('/')));
             popup.Show(labelDisplay);
             
         }
 
-        private void content_SureClick(object sender, EventArgs e, DateTime start, DateTime end,string startMilisec,string endMiliSec)
+        private void content_SureClick(object sender, EventArgs e, DateTime start, DateTime end)
         {
             startTime = start;
             endTime = end;
@@ -47,8 +47,8 @@ namespace DateTimeIntervelControl
             sb.Append(start.Day + " ");
             sb.Append(start.Hour + ":");
             sb.Append(start.Minute + ":");
-            sb.Append(start.Second+".");
-            sb.Append(startMilisec);
+            sb.Append(start.Second);
+            //sb.Append(startMilisec);
             sb.Append("-");
 
             sb.Append(end.Year + "/");
@@ -56,8 +56,8 @@ namespace DateTimeIntervelControl
             sb.Append(end.Day + " ");
             sb.Append(end.Hour + ":");
             sb.Append(end.Minute + ":");
-            sb.Append(end.Second+".");
-            sb.Append(endMiliSec);
+            sb.Append(end.Second);
+            //sb.Append(endMiliSec);
             labelDisplay.Text = sb.ToString();
             labelDisplay.ForeColor = Color.Black;
             dTime = sb.ToString();
@@ -72,6 +72,10 @@ namespace DateTimeIntervelControl
         {
             get {
                 return dTime;
+            }
+            set {
+                labelDisplay.Text = value;
+                labelDisplay.ForeColor=SystemColors.ButtonShadow;
             }
         }
         public DateTime StartTime

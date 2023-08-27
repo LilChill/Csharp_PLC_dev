@@ -40,7 +40,7 @@ namespace DateTimeIntervelControl
             // 
             // btnSure
             // 
-            this.btnSure.Location = new System.Drawing.Point(440, 263);
+            this.btnSure.Location = new System.Drawing.Point(440, 259);
             this.btnSure.Name = "btnSure";
             this.btnSure.Size = new System.Drawing.Size(75, 23);
             this.btnSure.TabIndex = 0;
@@ -86,22 +86,18 @@ namespace DateTimeIntervelControl
             // 
             // timeEnd
             // 
-            this.timeEnd.Location = new System.Drawing.Point(284, 223);
-            this.timeEnd.MyTime = new string[] {
-        "0:0:0",
-        "0"};
+            this.timeEnd.Location = new System.Drawing.Point(318, 220);
+            this.timeEnd.MyTime = "0:0:0";
             this.timeEnd.Name = "timeEnd";
-            this.timeEnd.Size = new System.Drawing.Size(261, 21);
+            this.timeEnd.Size = new System.Drawing.Size(180, 21);
             this.timeEnd.TabIndex = 3;
             // 
             // timeStart
             // 
-            this.timeStart.Location = new System.Drawing.Point(9, 223);
-            this.timeStart.MyTime = new string[] {
-        "0:0:0",
-        "0"};
+            this.timeStart.Location = new System.Drawing.Point(40, 220);
+            this.timeStart.MyTime = "0:0:0";
             this.timeStart.Name = "timeStart";
-            this.timeStart.Size = new System.Drawing.Size(269, 21);
+            this.timeStart.Size = new System.Drawing.Size(184, 21);
             this.timeStart.TabIndex = 3;
             // 
             // DateTimeIntervelPopup
@@ -116,7 +112,7 @@ namespace DateTimeIntervelControl
             this.Controls.Add(this.calendarStart);
             this.Controls.Add(this.btnSure);
             this.Name = "DateTimeIntervelPopup";
-            this.Size = new System.Drawing.Size(551, 302);
+            this.Size = new System.Drawing.Size(551, 297);
             this.ResumeLayout(false);
             this.PerformLayout();
 

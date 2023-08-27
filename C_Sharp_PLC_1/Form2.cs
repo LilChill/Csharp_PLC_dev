@@ -31,13 +31,13 @@ namespace C_Sharp_PLC_1
             if (dateTimeIntervelPicker.DTime != null ) {
                 time = dateTimeIntervelPicker.DTime.Split('-');
                 AuxiliaryLines = new string[2];
-                AuxiliaryLines[0] = time[0];
-                AuxiliaryLines[1] = time[1];
+                AuxiliaryLines[0] = time[0] + ".0";
+                AuxiliaryLines[1] = time[1] + ".999";
                 mainForm.AuxiliaryLinesTime = AuxiliaryLines;
-                int startReplayIndex, endReplayIndex;
-                startReplayIndex = mainForm.getTimeIndex(AuxiliaryLines[0]);
-                endReplayIndex = mainForm.getTimeIndex(AuxiliaryLines[1]);
-                mainForm.Draw_replay_curve(startReplayIndex, endReplayIndex, Color.Red, endReplayIndex - startReplayIndex + 1);
+                //int startReplayIndex, endReplayIndex;
+                //startReplayIndex = mainForm.getTimeIndex(AuxiliaryLines[0]);
+                //endReplayIndex = mainForm.getTimeIndex(AuxiliaryLines[1]);
+                mainForm.Draw_replay_curve();
                 mainForm.userCurve_replay1.Invalidate();
                 mainForm.userCurve1.Invalidate();
                 mainForm.userCurve_replay2.Invalidate();

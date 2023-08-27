@@ -206,7 +206,7 @@
             this.Export_Button.CustomerInformation = null;
             this.Export_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Export_Button.ForeColor = System.Drawing.Color.Black;
-            this.Export_Button.Location = new System.Drawing.Point(1308, 27);
+            this.Export_Button.Location = new System.Drawing.Point(1168, 27);
             this.Export_Button.Name = "Export_Button";
             this.Export_Button.SelectColor = System.Drawing.Color.Orange;
             this.Export_Button.Size = new System.Drawing.Size(114, 46);
@@ -220,7 +220,7 @@
             this.Choose_Time_Button.CustomerInformation = null;
             this.Choose_Time_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Choose_Time_Button.ForeColor = System.Drawing.Color.Chocolate;
-            this.Choose_Time_Button.Location = new System.Drawing.Point(1163, 27);
+            this.Choose_Time_Button.Location = new System.Drawing.Point(1023, 27);
             this.Choose_Time_Button.Name = "Choose_Time_Button";
             this.Choose_Time_Button.SelectColor = System.Drawing.Color.Orange;
             this.Choose_Time_Button.Size = new System.Drawing.Size(114, 46);
@@ -235,12 +235,13 @@
             this.Replay_Button.Enabled = false;
             this.Replay_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Replay_Button.ForeColor = System.Drawing.Color.OrangeRed;
-            this.Replay_Button.Location = new System.Drawing.Point(1019, 27);
+            this.Replay_Button.Location = new System.Drawing.Point(1315, 27);
             this.Replay_Button.Name = "Replay_Button";
             this.Replay_Button.SelectColor = System.Drawing.Color.Orange;
             this.Replay_Button.Size = new System.Drawing.Size(114, 46);
             this.Replay_Button.TabIndex = 8;
             this.Replay_Button.Text = "数据回放";
+            this.Replay_Button.Visible = false;
             this.Replay_Button.Click += new System.EventHandler(this.Replay_Button_Click);
             // 
             // label2
@@ -369,6 +370,7 @@
             // 
             this.userCurve_replay2.BackColor = System.Drawing.Color.Transparent;
             this.userCurve_replay2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userCurve_replay2.IsAbscissaStrech = true;
             this.userCurve_replay2.Location = new System.Drawing.Point(741, 4);
             this.userCurve_replay2.Margin = new System.Windows.Forms.Padding(5, 4, 4, 4);
             this.userCurve_replay2.Name = "userCurve_replay2";
@@ -386,6 +388,7 @@
             // 
             this.userCurve_replay1.BackColor = System.Drawing.Color.Transparent;
             this.userCurve_replay1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userCurve_replay1.IsAbscissaStrech = true;
             this.userCurve_replay1.Location = new System.Drawing.Point(4, 4);
             this.userCurve_replay1.Margin = new System.Windows.Forms.Padding(4);
             this.userCurve_replay1.Name = "userCurve_replay1";
@@ -462,7 +465,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EP3174 Analog Sungal_Gather";
+            this.Text = "EP3174 Analog Signal_Gather";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

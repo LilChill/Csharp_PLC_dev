@@ -112,7 +112,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1477, 853);
-            this.splitContainer1.SplitterDistance = 128;
+            this.splitContainer1.SplitterDistance = 112;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -121,7 +121,7 @@
             this.segment_name.AutoSize = true;
             this.segment_name.BackColor = System.Drawing.Color.Transparent;
             this.segment_name.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.segment_name.Location = new System.Drawing.Point(347, 93);
+            this.segment_name.Location = new System.Drawing.Point(460, 17);
             this.segment_name.Name = "segment_name";
             this.segment_name.Size = new System.Drawing.Size(0, 17);
             this.segment_name.TabIndex = 12;
@@ -131,7 +131,7 @@
             this.well_name.AutoSize = true;
             this.well_name.BackColor = System.Drawing.Color.Transparent;
             this.well_name.Font = new System.Drawing.Font("Times New Roman", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.well_name.Location = new System.Drawing.Point(109, 94);
+            this.well_name.Location = new System.Drawing.Point(338, 18);
             this.well_name.Name = "well_name";
             this.well_name.Size = new System.Drawing.Size(0, 17);
             this.well_name.TabIndex = 12;
@@ -140,7 +140,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(62, 92);
+            this.label4.Location = new System.Drawing.Point(291, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 19);
             this.label4.TabIndex = 11;
@@ -150,7 +150,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(300, 92);
+            this.label3.Location = new System.Drawing.Point(413, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 19);
             this.label3.TabIndex = 11;
@@ -160,7 +160,7 @@
             // 
             this.btnCollapseReplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCollapseReplay.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCollapseReplay.Location = new System.Drawing.Point(1426, 97);
+            this.btnCollapseReplay.Location = new System.Drawing.Point(1426, 81);
             this.btnCollapseReplay.Name = "btnCollapseReplay";
             this.btnCollapseReplay.Size = new System.Drawing.Size(44, 24);
             this.btnCollapseReplay.TabIndex = 5;
@@ -193,7 +193,7 @@
             this.Connect_Button.CustomerInformation = null;
             this.Connect_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Connect_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.Connect_Button.Location = new System.Drawing.Point(570, 27);
+            this.Connect_Button.Location = new System.Drawing.Point(576, 27);
             this.Connect_Button.Name = "Connect_Button";
             this.Connect_Button.SelectColor = System.Drawing.Color.DarkRed;
             this.Connect_Button.Size = new System.Drawing.Size(114, 46);
@@ -220,7 +220,7 @@
             this.Choose_Time_Button.CustomerInformation = null;
             this.Choose_Time_Button.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Choose_Time_Button.ForeColor = System.Drawing.Color.Chocolate;
-            this.Choose_Time_Button.Location = new System.Drawing.Point(1023, 27);
+            this.Choose_Time_Button.Location = new System.Drawing.Point(1022, 27);
             this.Choose_Time_Button.Name = "Choose_Time_Button";
             this.Choose_Time_Button.SelectColor = System.Drawing.Color.Orange;
             this.Choose_Time_Button.Size = new System.Drawing.Size(114, 46);
@@ -345,7 +345,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer2.Size = new System.Drawing.Size(1473, 715);
+            this.splitContainer2.Size = new System.Drawing.Size(1473, 731);
             this.splitContainer2.SplitterDistance = 177;
             this.splitContainer2.SplitterWidth = 10;
             this.splitContainer2.TabIndex = 4;
@@ -363,7 +363,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 177F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1473, 177);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(150, 177);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // userCurve_replay2
@@ -371,10 +371,10 @@
             this.userCurve_replay2.BackColor = System.Drawing.Color.Transparent;
             this.userCurve_replay2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userCurve_replay2.IsAbscissaStrech = true;
-            this.userCurve_replay2.Location = new System.Drawing.Point(741, 4);
+            this.userCurve_replay2.Location = new System.Drawing.Point(80, 4);
             this.userCurve_replay2.Margin = new System.Windows.Forms.Padding(5, 4, 4, 4);
             this.userCurve_replay2.Name = "userCurve_replay2";
-            this.userCurve_replay2.Size = new System.Drawing.Size(728, 169);
+            this.userCurve_replay2.Size = new System.Drawing.Size(66, 169);
             this.userCurve_replay2.TabIndex = 3;
             this.userCurve_replay2.Title = "Replay Signal2";
             this.userCurve_replay2.ValueMaxLeft = 2F;
@@ -392,7 +392,7 @@
             this.userCurve_replay1.Location = new System.Drawing.Point(4, 4);
             this.userCurve_replay1.Margin = new System.Windows.Forms.Padding(4);
             this.userCurve_replay1.Name = "userCurve_replay1";
-            this.userCurve_replay1.Size = new System.Drawing.Size(728, 169);
+            this.userCurve_replay1.Size = new System.Drawing.Size(67, 169);
             this.userCurve_replay1.TabIndex = 2;
             this.userCurve_replay1.Title = "Replay Signal1";
             this.userCurve_replay1.ValueMaxLeft = 2F;
@@ -416,7 +416,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1473, 715);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1473, 731);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // userCurve1
@@ -426,7 +426,7 @@
             this.userCurve1.Location = new System.Drawing.Point(4, 4);
             this.userCurve1.Margin = new System.Windows.Forms.Padding(4);
             this.userCurve1.Name = "userCurve1";
-            this.userCurve1.Size = new System.Drawing.Size(1465, 339);
+            this.userCurve1.Size = new System.Drawing.Size(1465, 347);
             this.userCurve1.StrechDataCountMax = 100;
             this.userCurve1.TabIndex = 1;
             this.userCurve1.TextAddFormat = "HH:mm:ss";
@@ -441,10 +441,10 @@
             // 
             this.userCurve2.BackColor = System.Drawing.Color.Transparent;
             this.userCurve2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userCurve2.Location = new System.Drawing.Point(4, 351);
+            this.userCurve2.Location = new System.Drawing.Point(4, 359);
             this.userCurve2.Margin = new System.Windows.Forms.Padding(4);
             this.userCurve2.Name = "userCurve2";
-            this.userCurve2.Size = new System.Drawing.Size(1465, 339);
+            this.userCurve2.Size = new System.Drawing.Size(1465, 347);
             this.userCurve2.TabIndex = 0;
             this.userCurve2.TextAddFormat = "HH:mm:ss";
             this.userCurve2.Title = "Signal2";

@@ -59,6 +59,7 @@ namespace C_Sharp_PLC_1
         string connectstring;
         public bool isReplaying = false;
         public  int startIndex, endIndex;//记录当前采集时间段的起止记录索引
+        int startReplayIndex, endReplayIndex;//记录指定时间段的起止记录索引(用于展示、导出)
         public string currentTableName;
         public string currentExportFileName;
         public List<HslControls.AuxiliaryLine> auxiliaryLine;
@@ -204,11 +205,11 @@ namespace C_Sharp_PLC_1
                 //endIndex = Get_Length();
                 Set_gather_component_mode(false);
                               
-                Replay(1);
+                Replay(1000);
 
             }
 
-
+            
         }
         /// <summary>
         /// 传输数据函数，在选择井、段后被调用
@@ -419,12 +420,16 @@ namespace C_Sharp_PLC_1
             }
 
         }
-
+        /// <summary>
+        /// 清空回放框曲线及辅助线
+        /// </summary>
         private void disposeReplayLine()
         {
             userCurve_replay1.RemoveAllCurve();
             userCurve_replay2.RemoveAllCurve();
             AuxiliaryLinesTime = null;
+            if(indexArray!=null)
+                indexArray.Clear();
             pen_Auxiliary_Line?.Dispose();
             brush_Auxiliary_text?.Dispose();
             userCurve_replay1.Invalidate();
@@ -448,10 +453,13 @@ namespace C_Sharp_PLC_1
         {
             form2.Show();
         }
+        /// <summary>
+        /// 绘制指定时间段回放曲线
+        /// </summary>
         public void Draw_replay_curve()
         {
             //Console.WriteLine($"startReplayIndex:{startReplayIndex}");
-            int startReplayIndex, endReplayIndex;
+            
             int length;
             Color color = Color.Red;
             string startReplayTime = indexArray[getTimeIndex(ParseStringToSqlFormat(AuxiliaryLinesTime[0]))]; 
@@ -573,6 +581,12 @@ namespace C_Sharp_PLC_1
             Graphics g = userControl.CreateGraphics();
             g.DrawLine(pen_dash, index * offect + leftRight, upDown, index * offect + leftRight, heigh_totle - upDown - 1);
         }
+        /// <summary>
+        /// 时间辅助线绘制
+        /// </summary>
+        /// <param name="AuxiliaryLinesTime"></param>
+        /// <param name="userCurve"></param>
+        /// <param name="e"></param>
         private void draw_replay_auxiliaryLine(string[] AuxiliaryLinesTime, UserCurve userCurve, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -639,25 +653,8 @@ namespace C_Sharp_PLC_1
                 MessageBox.Show("无数据");
                 return;
             }
-            AuxiliaryLinesTime = Form2.AuxiliaryLines;
-            string parantPath = "";
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.Description = "请选择输出文件夹";
-            int startIndex, endIndex, length;
-            startIndex = getTimeIndex(AuxiliaryLinesTime[0]);
-            endIndex = getTimeIndex(AuxiliaryLinesTime[1]);
-            length = endIndex - startIndex + 1;
             string path = SaveFilePathName(currentExportFileName);
             
-            /*if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (string.IsNullOrEmpty(dialog.SelectedPath))
-                {
-                    MessageBox.Show(this, "文件夹路径不能为空", "提示"); return;
-                }
-                parantPath = dialog.SelectedPath;
-                fileName = Path.Combine(parantPath, currentExportFileName);
-            }*/
             try
             {
                 using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default))
@@ -670,7 +667,7 @@ namespace C_Sharp_PLC_1
                     {
                         sw.WriteLine($"{exportData.timestamp},{exportData.milliseconds},{exportData.signal1},{exportData.signal2}");
                     }
-                    //MessageBox.Show($"文件导出成功");
+                    MessageBox.Show($"文件导出成功！");
                 }
             }
             catch (Exception error)

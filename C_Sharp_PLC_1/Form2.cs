@@ -39,10 +39,10 @@ namespace C_Sharp_PLC_1
                 //endReplayIndex = mainForm.getTimeIndex(AuxiliaryLines[1]);
                 mainForm.Draw_replay_curve();
                 mainForm.userCurve_replay1.Invalidate();
-                mainForm.userCurve1.Invalidate();
+                mainForm.userCurve_detail1.Invalidate();
                 mainForm.userCurve_replay2.Invalidate();
-                mainForm.userCurve2.Invalidate();
-                mainForm.Export_Button.Visible = true;
+                mainForm.userCurve_detail2.Invalidate();
+                mainForm.Export_Button1.Visible = true;
 
                
 

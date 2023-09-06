@@ -58,7 +58,7 @@ namespace C_Sharp_PLC_1
         string databasePassWord = "lichunrui";
         string connectstring;
         public bool isReplaying = false;
-        public  int startIndex, endIndex;//记录当前采集时间段的起止记录索引
+        public int startIndex, endIndex;//记录当前采集时间段的起止记录索引
         int startReplayIndex, endReplayIndex;//记录指定时间段的起止记录索引(用于展示、导出)
         public string currentTableName;
         public string currentExportFileName;
@@ -71,7 +71,16 @@ namespace C_Sharp_PLC_1
             InitializeComponent();
             connectstring = $"server = localhost; user = {databaseUsername}; password = {databasePassWord} ; database = array;Allow User Variables=True";
             form2 = new Form2(this);
+            myTabControl1.Dock= DockStyle.Fill;
             startIndex = endIndex = 0;
+            getAllWellName(comboBox_collect_well);
+            if (wells_dataTable != null)
+            {
+                comboBox_collect_well.SelectedIndex = defaultWell;
+                comboBox_collect_segment.SelectedIndex = defaultSegment;
+            }
+            //startIndex = 8800;
+            //currentTableName = "well11_segment15_signals";
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -87,14 +96,16 @@ namespace C_Sharp_PLC_1
             if (mode) {
                 userLantern1.LanternBackground = Color.Green;
                 label_isConnect.Text = "已连接";
-                Connect_Button.Text = "断开连接";
+                label_Btn_Connect.Text = "断开连接";
                 Gather_Button.Enabled = true;
+                Connect_Button.BackgroundImage = Properties.Resources.disconnect;
             }
             else {
                 userLantern1.LanternBackground = Color.Red;
                 label_isConnect.Text = "未连接";
-                Connect_Button.Text = "连接";
+                label_Btn_Connect.Text = "连接";
                 Gather_Button.Enabled = false;
+                Connect_Button.BackgroundImage = Properties.Resources.connect;
             }
         }
         /// <summary>
@@ -104,34 +115,37 @@ namespace C_Sharp_PLC_1
         private void Set_gather_component_mode(bool mode) {
             if (mode)
             {
-                userCurve1.StrechDataCountMax = userCurve2.StrechDataCountMax = 300;
+                //userCurve_detail1.StrechDataCountMax = userCurve_detail2.StrechDataCountMax = 300;
 
-                userCurve1.IsAbscissaStrech = userCurve2.IsAbscissaStrech = false;
+                //userCurve_detail1.IsAbscissaStrech = userCurve_detail2.IsAbscissaStrech = false;
 
-                userCurve1.TextAddFormat = userCurve2.TextAddFormat = "HH:mm:ss";
+                //userCurve_detail1.TextAddFormat = userCurve_detail2.TextAddFormat = "HH:mm:ss";
 
                 userLantern2.LanternBackground = Color.Green;
-                Gather_Button.Text = "停止传输";
-                label_isGathering.Text = "传输中";
+                button_collect_confirm.Text = "停止采集";
+                label_isGathering.Text = "采集中";
                 Connect_Button.Enabled = false;
                 Replay_Button.Enabled = true;
 
                 isGathering = true;
                 isReplaying = false;
+                //Gather_Button.BackgroundImage = Properties.Resources.stop;
 
             }
             else
             {
                 isGathering = false;
                 userLantern2.LanternBackground = Color.Red;
-                Gather_Button.Text = "开始传输";
-                label_isGathering.Text = "未传输";
+                button_collect_confirm.Text = "开始采集";
+                label_isGathering.Text = "未采集";
                 Connect_Button.Enabled = true;
+                //Gather_Button.BackgroundImage = Properties.Resources.collect;
             }
         }
 
         private void Connect_Button_Click(object sender, EventArgs e)
         {
+
             if (!isConnected)
             {
                 adsClient = new TcAdsClient();
@@ -141,8 +155,8 @@ namespace C_Sharp_PLC_1
                 {
                     varHandle = adsClient.CreateVariableHandle("MAIN.stData");
 
-                    userCurve1.SetLeftCurve("A", new float[] { }, Color.Red);
-                    userCurve2.SetLeftCurve("B", new float[] { }, Color.Blue);
+                    userCurve_collect1.SetLeftCurve("A", new float[] { }, Color.Red);
+                    userCurve_collect2.SetLeftCurve("B", new float[] { }, Color.Blue);
                     isConnected = true;
                     Set_connect_component_mode(true);
 
@@ -162,54 +176,215 @@ namespace C_Sharp_PLC_1
                 isConnected = false;
                 Set_connect_component_mode(false);
             }
-
         }
 
         private void DataScrub_Button_Click(object sender, EventArgs e)
         {
-            userCurve1.RemoveAllCurve(); userCurve2.RemoveAllCurve();
-            userCurve1.SetLeftCurve("A", new float[] { }, Color.Red); userCurve2.SetLeftCurve("B", new float[] { }, Color.Blue);
-            userCurve1.StrechDataCountMax = userCurve2.StrechDataCountMax = 300;
-            userCurve1.IsAbscissaStrech = userCurve2.IsAbscissaStrech = false;
-            userCurve1.TextAddFormat = userCurve2.TextAddFormat = "HH:mm:ss";
-            disposeReplayLine();
+            userCurve_collect1.RemoveAllCurve(); userCurve_collect2.RemoveAllCurve();
+            userCurve_collect1.SetLeftCurve("A", new float[] { }, Color.Red); userCurve_collect2.SetLeftCurve("B", new float[] { }, Color.Blue);
+            //userCurve_replay1.RemoveAllCurve(); userCurve_replay2.RemoveAllCurve();
+            userCurve_detail1.RemoveAllCurve(); userCurve_detail2.RemoveAllCurve();
+            //先判断是否已经存在该选项卡
+            foreach (TabPage tabPage in myTabControl1.TabPages)
+            {
+                if (tabPage.Text == "数据采集")
+                {
+                    myTabControl1.SelectedTab = tabPage;
+                    return;
+                }
+            }
+            //disposeReplayLine();
 
-            splitContainer2.Panel1Collapsed = true;
-            Choose_Time_Button.Visible = false;
-            Export_Button.Visible = false;
+            //splitContainer_replay.Panel1Collapsed = true;
+            //Choose_Time_Button.Visible = false;
+            //Export_Button.Visible = false;
         }
 
         private void Gather_Button_Click(object sender, EventArgs e)
         {
-            if (!isGathering)
+
+            //先判断是否已经存在该选项卡
+            foreach (TabPage tabPage in myTabControl1.TabPages)
             {
-                //初始化曲线框
-                userCurve1.RemoveAllCurve(); userCurve2.RemoveAllCurve();
-                userCurve1.SetLeftCurve("A", new float[] { }, Color.Red); userCurve2.SetLeftCurve("B", new float[] { }, Color.Blue);
-
-
-                //清空回放框并收起
-                disposeReplayLine(); 
-                splitContainer2.Panel1Collapsed = true;
-                Choose_Time_Button.Visible = false;
-                Export_Button.Visible = false;
-
-                form3 = new Form3(this);
-                form3.Show();
-                currentTime = DateTime.Now;
-                form2.dateTimeIntervelPicker.DTime = "点击右侧按钮选择时间段";
-                
+                if (tabPage.Text == "数据采集")
+                {
+                    myTabControl1.SelectedTab = tabPage;
+                    return;
+                }
             }
+            // 创建新的TabPage
+            TabPage newTabPage = new TabPage("数据采集");
+
+            SplitContainer splitContainer = splitContainer_collect;
+
+            // 移除SplitContainer从其父容器中
+            splitContainer.Parent = null;
+            splitContainer_collect.Visible = true;
+            splitContainer_collect.Dock = DockStyle.Fill;
+            // 将Label添加到TabPage
+            newTabPage.Controls.Add(splitContainer_collect);
+
+            // 将新的TabPage添加到TabControl
+            myTabControl1.TabPages.Add(newTabPage);
+            myTabControl1.SelectedTab = newTabPage;
+
+            well_name.Text = comboBox_collect_well.Text;
+            segment_name.Text = comboBox_collect_segment.Text;
+
+
+
+
+        }
+
+        //--------------------------------------------------------------------------------------
+        DataTable wells_dataTable;
+        DataTable segments_dataTable;
+        static int defaultWell = 0;
+        static int defaultSegment = 0;
+        public int getWellIdByName(string well_name)
+        {
+            int id;
+
+            using (MySqlConnection connection = new MySqlConnection(connectstring))
+            {
+                connection.Open();
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = $"SELECT id FROM wells WHERE name='{well_name}'";
+                    id = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            return id;
+        }
+        public int getSegmentIdByNameAndWellId(string segment_name, int well_id)
+        {
+            int id;
+
+            using (MySqlConnection connection = new MySqlConnection(connectstring))
+            {
+                connection.Open();
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = $"SELECT id FROM segments WHERE name='{segment_name}' AND well_id ={well_id} ";
+                    id = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            return id;
+        }
+        public void getAllWellName(ComboBox comboBox_well)
+        {
+
+            using (MySqlConnection connection = new MySqlConnection(connectstring))
+            {
+                connection.Open();
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = $"SELECT id, name FROM wells";
+                    command.Parameters.Clear();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            wells_dataTable = new DataTable();
+                            wells_dataTable.Load(reader);
+                            comboBox_well.DataSource = wells_dataTable;
+                            comboBox_well.DisplayMember = "name";
+                            comboBox_well.ValueMember = "id";
+                        }
+                    }
+                }
+            }
+        }
+        public void getAllSegmentsName(int well_id, ComboBox comboBox_segments)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectstring))
+            {
+                connection.Open();
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = $"SELECT * FROM segments WHERE well_id={well_id}";
+                    command.Parameters.Clear();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            segments_dataTable = new DataTable();
+                            segments_dataTable.Load(reader);
+                            comboBox_segments.DataSource = segments_dataTable;
+                            comboBox_segments.DisplayMember = "name";
+                            comboBox_segments.ValueMember = "id";
+                        }
+                    }
+                }
+            }
+        }
+        private void comboBox_collect_well_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (wells_dataTable != null)
+            {
+                DataRowView drv = (DataRowView)comboBox_collect_well.SelectedItem;
+                int select_well_id = Convert.ToInt32(drv.Row["id"].ToString());
+                getAllSegmentsName(select_well_id, comboBox_collect_segment);
+            }
+            well_name.Text = comboBox_collect_well.Text;
+            
+        }
+        //--------------------------------------------------------------------------------------
+        public int current_well;
+        public int current_segment;
+        private void button_collect_confirm_Click(object sender, EventArgs e)
+        {
+            string newWellName = comboBox_collect_well.Text;
+            string newSegmentName = comboBox_collect_segment.Text;
+
+            if (!isGathering) {
+                //初始化曲线框
+                userCurve_collect1.RemoveAllCurve(); userCurve_collect2.RemoveAllCurve();
+                userCurve_collect1.SetLeftCurve("A", new float[] { }, Color.Red); userCurve_collect2.SetLeftCurve("B", new float[] { }, Color.Blue);
+
+                currentTime = DateTime.Now;
+                MySqlConnection connection = new MySqlConnection(connectstring);
+                connection.Open();
+                MySqlCommand command = new MySqlCommand();
+                command.Connection = connection;
+                if (newWellName == "" || newSegmentName == "")
+                {
+                    MessageBox.Show("请选择井/段号！");
+                    return;
+                }
+                else
+                {
+                    current_well = getWellIdByName(newWellName);
+                    current_segment = getSegmentIdByNameAndWellId(newSegmentName, current_well);
+                }
+                connection.Close();
+                defaultWell = comboBox_collect_well.SelectedIndex;
+                defaultSegment = comboBox_collect_segment.SelectedIndex;
+
+                currentTableName = $"well{current_well}_segment{current_segment}_signals";
+                currentExportFileName = $"{newWellName}_{newSegmentName}_signals";
+                startIndex = Get_Length()+1;
+                Set_gather_component_mode(true);
+                timer1.Interval = 10;
+                timer1.Start();
+                comboBox_collect_well.Enabled= false;
+                comboBox_collect_segment.Enabled= false;
+            }             
             else
-            {                
+            {
                 //endIndex = Get_Length();
                 Set_gather_component_mode(false);
-                              
-                Replay(1000);
+                comboBox_collect_well.Enabled = true;
+                comboBox_collect_segment.Enabled=true;
+                //Replay(1);
 
             }
 
-            
+
         }
         /// <summary>
         /// 传输数据函数，在选择井、段后被调用
@@ -252,8 +427,8 @@ namespace C_Sharp_PLC_1
                     array2[k] = (float)dataRead.data[k].dintArr[1]; 
                 }
 
-                userCurve1.AddCurveData("A", array1); userCurve2.AddCurveData("B", array2);
-                userCurve1.Invalidate(); userCurve2.Invalidate();
+                userCurve_collect1.AddCurveData("A", array1); userCurve_collect2.AddCurveData("B", array2);
+                userCurve_collect1.Invalidate(); userCurve_collect2.Invalidate();
 
                 //数据入库
                 using (MySqlConnection connection = new MySqlConnection(connectstring))
@@ -287,11 +462,54 @@ namespace C_Sharp_PLC_1
 
         private void Replay_Button_Click(object sender, EventArgs e)
         {           
-            int selectInterval = 2;//间隔多少条取数据
+            
+            //先判断是否已经存在该选项卡
+            foreach (TabPage tabPage in myTabControl1.TabPages)
+            {
+                if (tabPage.Text == "数据回放")
+                {
+                    myTabControl1.SelectedTab = tabPage;
+                    return;
+                }
+            }
+            // 创建新的TabPage
+            TabPage newTabPage = new TabPage("数据回放");
+
+            SplitContainer splitContainer = splitContainer_replay;
+
+            // 移除SplitContainer从其父容器中
+            splitContainer_replay.Parent = null;
+            splitContainer_replay.Visible = true;
+            splitContainer_replay.Dock = DockStyle.Fill;
+            // 将Label添加到TabPage
+            newTabPage.Controls.Add(splitContainer_replay);
+
+            // 将新的TabPage添加到TabControl
+            myTabControl1.TabPages.Add(newTabPage);
+            myTabControl1.SelectedTab = newTabPage;
+
+
+            int currentLength = Get_Length() - startIndex+1; // 当前时间段接收数据总数
+            using (MySqlConnection connection = new MySqlConnection(connectstring))
+            {
+                connection.Open();
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = $"SELECT TIMESTAMPDIFF(MINUTE, MIN(timestamp), MAX(timestamp)) as minutes FROM (SELECT timestamp  FROM {currentTableName} ORDER BY timestamp LIMIT @startIndex,@length) AS subquery;";
+                    command.Parameters.AddWithValue("@startIndex", startIndex);
+                    command.Parameters.AddWithValue("@length", currentLength);
+                    numericUpDown_start.Maximum=numericUpDown_end.Maximum = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            int selectInterval = 1000;//间隔多少条取数据
             Replay(selectInterval);
         }
 
-
+        private void button_replay_confirm_Click(object sender, EventArgs e)
+        {
+            
+        }
         /// <summary>
         /// 回放当前时间段采集的秒点数据
         /// </summary>
@@ -299,7 +517,7 @@ namespace C_Sharp_PLC_1
         private void Replay(int selectInterval)
         {
             Set_gather_component_mode(false);
-            int currentLength = Get_Length() - startIndex; // 当前时间段接收数据总数
+            int currentLength = Get_Length() - startIndex+1; // 当前时间段接收数据总数
             int sampleLength = currentLength / selectInterval; // 当前时间段接收数据的秒点采样总数
 
             
@@ -309,7 +527,7 @@ namespace C_Sharp_PLC_1
                 using (MySqlCommand command = new MySqlCommand())
                 {
                     command.Connection = connection;
-                    if(selectInterval<=1) command.CommandText = $"SELECT COUNT(*) FROM (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%{selectInterval}=0 ";
+                    if(selectInterval<=1) command.CommandText = $"SELECT COUNT(*) FROM (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%1=0 ";
 
                     else command.CommandText = $"SELECT COUNT(*) FROM (select @n:=@n+1 as i, a.* from (select * from {currentTableName} LIMIT @startIndex,@length)a,(select @n:=0)b)c where c.i%{selectInterval}=1 ";
                     command.Parameters.AddWithValue("@startIndex", startIndex);
@@ -332,7 +550,7 @@ namespace C_Sharp_PLC_1
                 indexArray = new List<string>(); 
                 customXAxisArray = new string[sampleLength]; // 回放框横坐标数组
                 int k = 0;
-                int afterExpandWidth = 728; //userCurve_replay1.Size.Width
+                int afterExpandWidth = userCurve_replay1.Size.Width;
                 int interval = get_interval(afterExpandWidth); // 获得回放框中纵向辅助线之间的间隔
 
                 bool hasData = false;
@@ -413,7 +631,7 @@ namespace C_Sharp_PLC_1
                         Choose_Time_Button.Visible = true;
                         btnCollapseReplay.Visible = true; //折叠按钮
                         btnCollapseReplay.Text = "收起";
-                        splitContainer2.Panel1Collapsed = false;
+                        splitContainer_replay.Panel1Collapsed = false;
                     }
                     //else MessageBox.Show("暂无数据");
                 }
@@ -462,8 +680,9 @@ namespace C_Sharp_PLC_1
             
             int length;
             Color color = Color.Red;
-            string startReplayTime = indexArray[getTimeIndex(ParseStringToSqlFormat(AuxiliaryLinesTime[0]))]; 
-            string endReplayTime = indexArray[getTimeIndex(ParseStringToSqlFormat(AuxiliaryLinesTime[1]))]; 
+            string startReplayTime = indexArray[getTimeIndexFromMinute(int.Parse(numericUpDown_start.Text))]; //indexArray[getTimeIndex(ParseStringToSqlFormat(AuxiliaryLinesTime[0]))]; 
+            string endReplayTime = indexArray[getTimeIndexFromMinute(int.Parse(numericUpDown_end.Text)+1)]; //indexArray[getTimeIndex(ParseStringToSqlFormat(AuxiliaryLinesTime[1]))]; 
+            
             using (MySqlConnection connection = new MySqlConnection(connectstring))
             {
                 connection.Open();
@@ -487,15 +706,15 @@ namespace C_Sharp_PLC_1
                 MessageBox.Show("所选范围内仅一条数据。");
                 return;
             }
-            userCurve1.RemoveAllCurve(); userCurve2.RemoveAllCurve();
+            userCurve_detail1.RemoveAllCurve(); userCurve_detail2.RemoveAllCurve();
 
-            userCurve1.SetLeftCurve("A", new float[] { }, color);
-            userCurve1.StrechDataCountMax = length;
-            userCurve1.IsAbscissaStrech = true;
+            userCurve_detail1.SetLeftCurve("A", new float[] { }, color);
+            userCurve_detail1.StrechDataCountMax = length;
+            userCurve_detail1.IsAbscissaStrech = true;
 
-            userCurve2.SetLeftCurve("B", new float[] { }, color);
-            userCurve2.StrechDataCountMax = length;
-            userCurve2.IsAbscissaStrech = true;
+            userCurve_detail2.SetLeftCurve("B", new float[] { }, color);
+            userCurve_detail2.StrechDataCountMax = length;
+            userCurve_detail2.IsAbscissaStrech = true;
             exportDataList = new List<ExportData>();
             float[] array1;
             float[] array2;
@@ -503,7 +722,7 @@ namespace C_Sharp_PLC_1
             string[] XAxisArray = new string[length];
             int k = 0;
             
-            int interval = get_interval(userCurve1.Width);
+            int interval = get_interval(userCurve_detail1.Width);
             bool hasData = false;
             using (MySqlConnection connection = new MySqlConnection(connectstring))
             {
@@ -554,8 +773,8 @@ namespace C_Sharp_PLC_1
                             }
                             if (hasData) //读取了200条记录
                             {
-                                userCurve1.AddCurveData("A", array1);
-                                userCurve2.AddCurveData("B", array2);
+                                userCurve_detail1.AddCurveData("A", array1);
+                                userCurve_detail2.AddCurveData("B", array2);
                             }
 
                             if (reader.Read() == false && i < rowCount || k > endReplayIndex) break; //若已经读到最后一页的最后一条记录，不足200条记录，
@@ -567,8 +786,8 @@ namespace C_Sharp_PLC_1
                     }
 
                 }
-                userCurve1.SetCurveText(XAxisArray);
-                userCurve2.SetCurveText(XAxisArray);
+                userCurve_detail1.SetCurveText(XAxisArray);
+                userCurve_detail2.SetCurveText(XAxisArray);
             }
         }
         private void addVerticalAuxiliaryLines(UserCurve userControl, int index)
@@ -680,8 +899,8 @@ namespace C_Sharp_PLC_1
 
         private void btnCollapseReplay_Click(object sender, EventArgs e)
         {
-            splitContainer2.Panel1Collapsed = !splitContainer2.Panel1Collapsed;
-            if (splitContainer2.Panel1Collapsed) btnCollapseReplay.Text = "展开";
+            splitContainer_replay.Panel1Collapsed = !splitContainer_replay.Panel1Collapsed;
+            if (splitContainer_replay.Panel1Collapsed) btnCollapseReplay.Text = "展开";
             else btnCollapseReplay.Text = "收起";
 
         }
@@ -770,6 +989,59 @@ namespace C_Sharp_PLC_1
             return indexArray.Count - 1;
 
         }
+        public int getTimeIndexFromMinute(int minute)
+        {
+            DateTime time = Convert.ToDateTime(indexArray[0]).AddMinutes(minute);
+            
+            for (int i = 0; i < indexArray.Count; i++)
+            {
+                if (time <= Convert.ToDateTime(indexArray[i])) return i;
+            }
+            return indexArray.Count - 1;
+
+        }
+        public int getTimeIndexFromSecond(int second)
+        {
+
+            int s = 0;
+            int oldTargetSecond = int.Parse(indexArray[0].Split(' ')[1].Split(':')[1]);
+            for (int i = 1; i < indexArray.Count; i++)
+            {
+
+                string[] targetArray = indexArray[i].Split(' ');
+                int tartgetMinute = int.Parse(targetArray[1].Split(':')[1]);
+                if (tartgetMinute > oldTargetSecond)
+                {
+                    s++;
+                    oldTargetSecond = tartgetMinute;
+                }
+                if (second == s)
+                    return i;
+            }
+            return indexArray.Count - 1;
+
+        }
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Setting_Button_Click(object sender, EventArgs e)
+        {
+            Form4 form4 = new Form4();
+            form4.Show();
+        }
+
+        private void button_replay_detail_confirm_Click(object sender, EventArgs e)
+        {
+            Draw_replay_curve();
+        }
+
+        private void comboBox_collect_segment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            segment_name.Text = comboBox_collect_segment.Text;
+        }
+
         private void Set_default_time() {
             form2.dateTimeIntervelPicker.DefaultStartTime  = new string[] { 
                 indexArray[0].Split(' ')[0], indexArray[0].Split(' ')[1].Split('.')[0]};
